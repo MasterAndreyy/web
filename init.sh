@@ -14,8 +14,10 @@ sudo /etc/init.d/nginx restart
 
 # Gunicorn (ver. 17.5)
 touch /home/box/gunicorn.log
+sudo ln -sf /home/box/web/etc/gunicorn.conf /etc/gunicorn.d/test
 sudo ln -sf /home/box/web/etc/gunicorn_ask.conf /etc/gunicorn.d/ask
 sudo /etc/init.d/gunicorn restart
+
 
 # MySQL
 echo 'innodb_use_native_aio = 0' | sudo tee --append /etc/mysql/my.cnf
