@@ -14,8 +14,10 @@ sudo /etc/init.d/nginx restart
 
 # Gunicorn (ver. 17.5)
 touch /home/box/gunicorn.log
-sudo ln -sf /home/box/web/etc/gunicorn.conf /etc/gunicorn.d/test
-sudo ln -sf /home/box/web/etc/gunicorn_ask.conf /etc/gunicorn.d/ask
+#sudo ln -sf /home/box/web/etc/gunicorn.conf /etc/gunicorn.d/test
+#sudo ln -sf /home/box/web/etc/gunicorn_ask.conf /etc/gunicorn.d/ask
+sudo gunicorn -c /home/box/web/etc/gunicorn.conf hello:wsgi_application
+sudo gunicorn -c /home/box/web/etc/gunicorn_ask.conf ask.wsgi:application
 sudo /etc/init.d/gunicorn restart
 
 
@@ -24,3 +26,6 @@ echo 'innodb_use_native_aio = 0' | sudo tee --append /etc/mysql/my.cnf
 sudo service mysql restart
 sudo mysql -uroot -e "CREATE DATABASE ask CHARACTER SET utf8 COLLATE utf8_general_ci;"
 sudo mysql -uroot -e "GRANT ALL PRIVILEGES ON ask.* TO 'ask_user'@'localhost' IDENTIFIED BY '123456789';"
+
+
+
