@@ -1,7 +1,5 @@
 from django.conf.urls import url
-from qa.views import test, question_list, question_detail, popular
-from qa.views import question_ask, question_answer
-from qa.views import user_signup, user_login, user_logout
+from qa.views import test
 
 urlpatterns = patterns('qa.views',                                              
    url(r'^$', 'test'),                                                              
